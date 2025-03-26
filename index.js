@@ -36,7 +36,7 @@ app.post('/multiply', validateNumbers, (req, res) => {
 app.post('/divide', validateNumbers, (req, res) => {
     const { num1, num2 } = req.body;
     if (num2 === 0) {
-        return res.status(400).json({ error: "除数不能为0" });
+        return res.status(400).json({ error: "The divisor cannot be 0" });
     }
     res.json({ result: num1 / num2 });
 });
