@@ -40,6 +40,35 @@ app.post('/divide', validateNumbers, (req, res) => {
     }
     res.json({ result: num1 / num2 });
 });
+//Exponentiation
+app.post('/power', validateNumbers, (req, res) => {
+    const { num1, num2 } = req.body;
+    res.json({ result: Math.pow(num1, num2) });
+});
+
+//Modulo
+app.post('/modulo', validateNumbers, (req, res) => {
+    const { num1, num2 } = req.body;
+    if (num2 === 0) {
+        return res.status(400).json({ error: "Divisor of modulo operation cannot be 0" });
+    }
+    res.json({ result: num1 % num2 });
+});
+
+// Square Root
+app.post('/sqrt', (req, res) => {
+    const { num } = req.body;
+
+    if (typeof num !== 'number') {
+        return res.status(400).json({ error: "The input parameter num must be a number" });
+    }
+    if (num < 0) {
+        return res.status(400).json({ error: "The input to the square root operation cannot be negative." });
+    }
+
+    res.json({ result: Math.sqrt(num) });
+});
+
 
 // start
 const PORT = process.env.PORT || 3000;
